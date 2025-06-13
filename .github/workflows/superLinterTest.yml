@@ -1,10 +1,6 @@
 name: Super Linter HTML Only
 
-on:
-  push:
-    branches: [main, LintTest, LintTest2]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
   lint-html:
@@ -14,15 +10,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run Super Linter
+      - name: Run Super Linter (HTML Only)
         uses: super-linter/super-linter@v5
         env:
-          DEFAULT_BRANCH: main
-          VALIDATE_HTML: true
-          VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_HTML: true
           DISABLE_ERRORS: false
-          VALIDATE_CSS: false
-          VALIDATE_JAVASCRIPT_ES: false
-          VALIDATE_MARKDOWN: false
-          VALIDATE_YAML: false
