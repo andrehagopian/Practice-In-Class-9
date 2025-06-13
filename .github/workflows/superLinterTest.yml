@@ -1,0 +1,28 @@
+name: Super Linter HTML Only
+
+on:
+  push:
+    branches: [main, LintTest, LintTest2]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Super Linter
+        uses: super-linter/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main
+          VALIDATE_HTML: true
+          VALIDATE_ALL_CODEBASE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLE_ERRORS: false
+          VALIDATE_CSS: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_YAML: false
